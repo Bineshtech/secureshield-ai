@@ -1,0 +1,5 @@
+streamlit>=1.50
+pandas>=2.0
+anthropic>=0.40
+# optional, only for REAL discovery (the lab simulator needs none of these):
+#   scapy>=2.5   (passive listening / ARP sweep, needs root)   and the nmap binary (active service detection)

@@ -1,0 +1,12 @@
+<!doctype html><html><body style="margin:20px;font-family:sans-serif">
+<iframe id="f" src="component/index.html" style="width:1100px;border:0" height="580"></iframe>
+<script>
+window.values=[]; window.ready=false; let frames=null;
+window.addEventListener('message',e=>{const d=e.data||{};
+  if(d.type==='streamlit:componentReady') window.ready=true;
+  if(d.type==='streamlit:setComponentValue') window.values.push(d.value);
+  if(d.type==='streamlit:setFrameHeight') document.getElementById('f').height=d.height;});
+fetch('frames.json').then(r=>r.json()).then(j=>frames=j);
+window.push=i=>document.getElementById('f').contentWindow.postMessage({type:'streamlit:render',args:frames[i].p,disabled:false,theme:{}},'*');
+window.nframes=()=>frames?frames.length:0;
+</script></body></html>
